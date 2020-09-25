@@ -1,0 +1,33 @@
+.input_container {
+
+}
+
+.error {
+    color: #ff3f44;
+    font-weight: bold;
+}
+
+.small {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+p.error {
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+
+input.error {
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #ff3f44;
+}
+
+.input_control {
+
+}
+
+.input_label {
+    margin-bottom: 5px;
+    margin-top: 0;
+}

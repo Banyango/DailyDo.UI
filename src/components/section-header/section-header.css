@@ -1,0 +1,19 @@
+.section-header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.section-header__container hr {
+    color: #ababab;
+    width: 100%;
+    margin-left: 9px;
+    margin-right: 0;
+}
+
+.section-header__text {
+
+}
+

@@ -1,0 +1,12 @@
+.day-summary__form {
+    margin-bottom: 20px;
+}
+
+.day-summary__text_field {
+    width: 100%;
+}
+
+.day-summary__menu_button {
+    width:100%;
+    justify-content: center;
+}

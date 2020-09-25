@@ -1,0 +1,58 @@
+.subtask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-left: 40px;
+    border-color: #ababab;
+}
+
+.subtask_button {
+    display: flex;
+    padding: 8px;
+}
+
+.subtask_button-inner {
+    align-content: stretch;
+    flex: 1 1 auto;
+    margin: 5px;
+    padding: 5px;
+}
+
+.subtask_text {
+    background: white;
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.subtask_text-inner {
+    align-content: stretch;
+    flex: 1 1 auto;
+    margin: 5px;
+    padding: 5px;
+}
+
+.subtask_close-button {
+    justify-self: flex-start;
+    margin-right: 6px;
+    margin-left: 2px;
+}
+
+.todo__description {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.todo__header {
+    border-right: 1px solid #ababab;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+}
+
+.subtask__container {
+    display: flex;
+    flex-direction: column;
+}

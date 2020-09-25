@@ -1,0 +1,30 @@
+.menu_button {
+    display: flex;
+    padding: 4px 9px;
+    margin: 5px;
+    color: #313131;
+    background-color: white;
+    border: 1px solid #535353;
+    border-radius: 3px;
+}
+
+.menu_button:active {
+    border-color: #2f2f2f;
+    background-color: #dedede;
+    color: #2f2f2f;
+}
+
+.menu_button:hover {
+    padding: 3px 8px;
+    background-color: #c0c0c0;
+    color: #171717;
+    border: 2px solid #646464;
+}
+
+.menu_button__icon {
+
+}
+
+.menu_button__text {
+    margin-left: 5px;
+}

@@ -1,0 +1,112 @@
+.todo_container {
+    border: 1px solid #ababab;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    background: white;
+    background-color: #fff;
+    background-clip: padding-box;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.175);
+
+}
+
+.todo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.todo_contains {
+    border-bottom: 1px solid #b3b3b3;
+}
+
+
+.button {
+    border-right: 1px solid #555;
+    padding: 8px;
+    display: flex;
+}
+
+.button-inner {
+    padding: 4px 9px;
+    margin: 5px;
+    color: #7f7f7f;
+    background-color: white;
+    border: 2px solid #a8a8a8;
+    border-radius: 3px;
+    align-content: stretch;
+    flex: 1 1 auto;
+}
+
+.text {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.text-inner {
+    align-content: stretch;
+    flex: 1 1 auto;
+    margin: 5px;
+    padding: 5px;
+    font-weight: 400;
+    color: #333;
+}
+
+.completed {
+    color: #97ab9e;
+    border: 1px solid #8cd481;
+    border-radius: 2px;
+    text-decoration-line: line-through;
+}
+
+.todo__close-button {
+    padding: 4px 9px;
+    margin: 5px;
+    color: #5c5c5c;
+    background-color: white;
+    border: 1px solid #646464;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: .8em;
+}
+
+.todo__close-button:hover {
+    padding: 4px 8px;
+    background-color: #cbcbcb;
+    border: 2px solid #646464;
+}
+
+.menu_button_add {
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    border: 1px solid;
+    border-radius: 11px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+span.grip {
+    content: '....';
+    width: 6px;
+    display: inline-block;
+    line-height: 5px;
+    padding: 10px;
+    cursor: move;
+    vertical-align: middle;
+    margin-top: -.7em;
+    font-size: 14px;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    color: #cccccc;
+    text-shadow: 1px 0 1px black;
+}
+
+span.grip::after {
+    content: '. . . .';
+}
