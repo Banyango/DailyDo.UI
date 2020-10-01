@@ -1,4 +1,4 @@
-import {Todo} from "../../state/todo";
+import {Task} from "../../state/task";
 import {DropResult} from "react-beautiful-dnd";
 
 export interface ITodoListProps extends ITodoListStateProps, ITodoListDispatchProps, ITodoListOwnProps {
@@ -16,12 +16,18 @@ export interface ITodoListStateProps  {
     /**
      * Todos
      */
-    todos: Todo[];
+    todos: Task[];
 }
 
 export interface ITodoListDispatchProps {
+
+    /***
+     * Emitted when component loaded.
+     */
+    onInit: () => void;
+
     /**
-     * Emitted when a component reorders todos
+     * Emitted when a component reorders task
      *
      * @param key
      * @param result

@@ -28,6 +28,10 @@ type UpdatePassword = {
   token: string;
 };
 
+type GetMe = {
+
+}
+
 export class UserActions {
   static login(email: string, password: string) {
     return async (dispatch: Dispatch, getState: () => IStore) => {
@@ -43,10 +47,7 @@ export class UserActions {
           method: "post",
           href: link.href,
           onPending: userReducerActions.setLoginPending,
-          onSuccess: async (user) => {
-            await dispatch(userReducerActions.setUser(user));
-            return push("/");
-          },
+          onSuccess: userReducerActions.setUser,
           onFailure: userReducerActions.setLoginError,
           payload: {
             email,
@@ -55,7 +56,8 @@ export class UserActions {
         },
       };
 
-      dispatch(action);
+      await dispatch(action);
+      return dispatch(push("/"))
     };
   }
 
@@ -80,10 +82,7 @@ export class UserActions {
           method: "post",
           href: link.href,
           onPending: userReducerActions.setRegistrationPending,
-          onSuccess: async () => {
-            await dispatch(userReducerActions.setUser);
-            return push(AppRoutes.CheckEmail);
-          },
+          onSuccess: userReducerActions.setUser,
           onFailure: userReducerActions.setRegisterError,
           payload: {
             lastName,
@@ -95,7 +94,8 @@ export class UserActions {
         },
       };
 
-      dispatch(action);
+      await dispatch(action);
+      return dispatch(push(AppRoutes.CheckEmail));
     };
   }
 
@@ -121,7 +121,7 @@ export class UserActions {
         },
       };
 
-      dispatch(action);
+      return dispatch(action);
     };
   }
 
@@ -147,7 +147,7 @@ export class UserActions {
         },
       };
 
-      dispatch(action);
+      return dispatch(action);
     };
   }
 
@@ -175,7 +175,29 @@ export class UserActions {
         },
       };
 
-      dispatch(action);
+      return dispatch(action);
     };
+  }
+
+  public static getMe() {
+    return async (dispatch: Dispatch, getState: () => IStore) => {
+      const link = IndexSelectors.getMe(getState());
+      if (!link) {
+        return;
+      }
+
+      const action: HttpAction<User, GetMe> = {
+        type: "GET_ME",
+        meta: {
+          type: "http",
+          method: "get",
+          href: link.href,
+          onPending: userReducerActions.setMePending,
+          onSuccess: userReducerActions.setUser,
+        },
+      };
+
+      return dispatch(action);
+    }
   }
 }

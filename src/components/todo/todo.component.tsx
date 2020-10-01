@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {Form} from "../form/form.component";
 import {Input} from "../form/input/input.component";
 import {IFormDispatchProps, IFormStateProps} from "../form/form.props";
@@ -10,7 +10,7 @@ import {SubTaskContainer} from "../sub-task/sub-task.container";
 import classNames from "classnames";
 
 import './todo.css';
-import {Todo} from "../../state/todo";
+import {Task} from "../../state/task";
 import {DropdownButton} from "../dropdown-button/dropdown.button";
 import {SummaryContainer} from "../summary/summary.container";
 
@@ -41,6 +41,16 @@ export interface ITodoOwnProps {
 export interface ITodoPageDispatchProps extends IFormDispatchProps<ITodoForm> {
 
     /**
+     * Emitted when component mounts.
+     */
+    onInit: () => void;
+
+    /**
+     * Emitted when component unmounts.
+     */
+    onDispose: () => void;
+
+    /**
      * Emitted when user clicks delete.
      */
     onDelete: () => void;
@@ -69,9 +79,9 @@ export interface ITodoStateProps extends IFormStateProps<ITodoForm> {
     complete: boolean;
 
     /**
-     * Sub todos
+     * Sub task
      */
-    todos: Todo[];
+    todos: Task[];
 }
 
 export interface ITodoForm {
@@ -83,7 +93,7 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
     const submit = useRef<HTMLInputElement>();
     const debouncedSearchTerm = useDebounceCallback(() => {
         submit.current?.click();
-    }, 500);
+    }, 1500);
     const contextButtons =[{
         key:'1',
         name:"Add Sub-Task",
@@ -93,6 +103,9 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
         name:"Add Note",
         onClick: props.onAddSummary
     }];
+    useEffect(()=> {
+        props.onInit();
+    }, []);
     return (
         <Draggable key={props.index} draggableId={props.index} index={props.order}>
             {(provided) => (
@@ -114,7 +127,10 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                    type="text" field={props.fields.text} onChange={debouncedSearchTerm}/>
                             <input ref={submit} type="submit" hidden/>
                             <DropdownButton buttons={contextButtons} />
-                            <button className="todo__close-button" onClick={props.onDelete}>x</button>
+                            <button className="todo__close-button" onClick={(e)=> {
+                                e.preventDefault();
+                                props.onDelete();
+                            }}>x</button>
                         </Form>
                         <Droppable
                             droppableId={props.index}
@@ -125,14 +141,14 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                     {...provided.droppableProps}>
                                     {
                                         props.todos?.map((item, index) => {
-                                            if(item.type === 'subtask') {
+                                            if(item.type === 'SubTask') {
                                                 return (
-                                                    <SubTaskContainer parent={props.index} key={item.key} index={item.key}
+                                                    <SubTaskContainer parent={item.parent} key={item.id} index={item.id}
                                                                       order={index} onKeyDown={props.onEnterPressOnSubTask}/>
                                                 )
                                             } else {
                                                 return (
-                                                    <SummaryContainer parent={props.index} key={item.key} index={item.key}
+                                                    <SummaryContainer parent={item.parent} key={item.id} index={item.id}
                                                                       order={index}/>
                                                 )
                                             }

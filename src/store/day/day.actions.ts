@@ -1,17 +1,58 @@
 import {Dispatch} from "redux";
 import {IStore} from "../store";
 import {dayReducerActions} from "./day.reducer";
-import {v4 as uuidv4} from "uuid";
+import {HttpAction} from "../../utils/request-utils";
 import {Day} from "../../state/day";
+import {IPaginated} from "../../rest/paginated";
 
 export class DayActions {
+
+    public static getDays() {
+        return async (dispatch:Dispatch, getState: ()=> IStore) => {
+            const action: HttpAction<IPaginated<Day>> = {
+                type: "GET_DAYS",
+                meta: {
+                    type: "http",
+                    method: "get",
+                    href: "/api/v1/auth/days",
+                    onSuccess: dayReducerActions.setDays
+                },
+            };
+
+            return dispatch(action);
+        }
+    }
+
     public static AddDay() {
         return async (dispatch:Dispatch, getState: ()=> IStore) => {
-            dispatch(dayReducerActions.addDay({
-                id:uuidv4(),
-                todoTopLevel:uuidv4(),
-                date:'today',
-            }));
+            const action: HttpAction<Day> = {
+                type: "POST_DAY",
+                meta: {
+                    type: "http",
+                    method: "post",
+                    href: "/api/v1/auth/days",
+                    onSuccess: dayReducerActions.addDay
+                },
+            };
+
+            return dispatch(action);
+        }
+    }
+
+    public static UpdateDay(day: Day) {
+        return async (dispatch:Dispatch, getState: ()=> IStore) => {
+            const action: HttpAction<Day, Day> = {
+                type: "PUT_DAY",
+                meta: {
+                    type: "http",
+                    method: "put",
+                    href: `/api/v1/auth/days/${day.id}`,
+                    onSuccess: dayReducerActions.addDay,
+                    payload: day,
+                },
+            };
+
+            return dispatch(action);
         }
     }
 

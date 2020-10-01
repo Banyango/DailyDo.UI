@@ -5,13 +5,13 @@ import App from "./App";
 import { IStore } from "../store/store";
 import {DayActions} from "../store/day/day.actions";
 import {ExportUtils} from "../utils/export-utils";
-import {IndexActions} from "../store/index/index.actions";
+import {AppActions} from "../store/app/app.actions";
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>
 ): IAppDispatchProps => {
   return {
-    onInit: () => {dispatch(IndexActions.index())},
+    onInit: () => dispatch(AppActions.initApplication()),
     onAddDay: () => dispatch(DayActions.AddDay()),
     onExport: () => dispatch(ExportUtils.export()),
     onSelectDay: (dayId:string) => dispatch(DayActions.SelectDay(dayId))
@@ -21,7 +21,7 @@ const mapDispatchToProps = (
 const mapStateToProps = (state: IStore): IAppStateProps => {
   return {
     initialized: !!state.index.index,
-    loading: state.index.pending,
+    loading: state.index.pending || state.user.mePending,
     error: state.index.error,
     day: DayActions.getSelectedDay(state),
     days: Object.values(state.days.days)

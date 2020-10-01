@@ -32,10 +32,15 @@ export const DropdownButton: React.FC<IDropdownProps> = (props) => {
     const [expanded, setExpanded] = useState(false);
     return (
         <div className="dropdown-button-group">
-            <button className="dropdown__button" onClick={() => setExpanded(!expanded)} onBlur={()=> setExpanded(false)}>+</button>
+            <button className="dropdown__button" onClick={(e) => {
+                e.preventDefault();
+                setExpanded(!expanded);
+            }} onBlur={() => setExpanded(false)}>+
+            </button>
             {expanded &&
             <ul className="dropdown">
                 {props.buttons.map(b => <li className="dropdown-selection" onClick={(e) => {
+                    e.preventDefault();
                     setExpanded(false);
                     b.onClick()
                 }}>{b.name}</li>)}

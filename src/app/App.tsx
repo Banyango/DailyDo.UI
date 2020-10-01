@@ -41,7 +41,7 @@ class App extends Component<IAppProps> {
     private renderRoutes = () => {
         return (
             <ConnectedRouter history={this.props.history}>
-                <Route exact path="/home">
+                <Route exact path="/">
                     {this.renderDay()}
                 </Route>
                 <Route path={AppRoutes.Login}>

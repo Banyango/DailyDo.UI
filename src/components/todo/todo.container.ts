@@ -1,4 +1,3 @@
-import {ThunkDispatch} from "redux-thunk";
 import {ITodoOwnProps, ITodoPageDispatchProps, ITodoStateProps, TodoComponent} from "./todo.component";
 import {IStore} from "../../store/store";
 import {createFormField} from "../form/form.props";
@@ -11,6 +10,7 @@ const mapDispatchToProps = (
 ): ITodoPageDispatchProps => {
     console.log(ownProps);
     return {
+        onInit: () => dispatch(TodoActions.getItems(ownProps.index)),
         onEnterPressOnSubTask: (event) => {
             if (event.key === "Enter") {
                 dispatch(TodoActions.addSubtask(ownProps.index));
@@ -19,20 +19,21 @@ const mapDispatchToProps = (
         onAddSummary: () => dispatch(TodoActions.addSummary(ownProps.index)),
         onAddSubTask: () => dispatch(TodoActions.addSubtask(ownProps.index)),
         onDelete: () => dispatch(TodoActions.deleteTodo(ownProps.parent, ownProps.index)),
-        onSubmit: (data) => dispatch(TodoActions.updateTodo(ownProps.parent, ownProps.index, data.checked, data.text))
+        onSubmit: (data) => dispatch(TodoActions.updateTodo(ownProps.parent, ownProps.index, data.text, data.checked)),
+        onDispose: () => dispatch(TodoActions.disposeTask(ownProps.index))
     };
 };
 
 const mapStateToProps = (state: IStore, ownProps: ITodoOwnProps): ITodoStateProps => {
     const todo = TodoSelectors.todo(state, ownProps.parent, ownProps.index);
     return {
-        complete: todo?.complete,
-        todos: state.todos.todos[ownProps.index],
+        complete: todo?.completed,
+        todos: state.todos.task[ownProps.index],
         initializing: false,
         submitting: false,
         fields: {
-            checked: createFormField<boolean>("checked", todo?.complete, undefined, todo?.complete),
-            text: createFormField<string>("text", todo?.task, undefined, todo?.task)
+            checked: createFormField<boolean>("checked", todo?.completed, undefined, todo?.completed),
+            text: createFormField<string>("text", todo?.text, undefined, todo?.text)
         },
     };
 };

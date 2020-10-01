@@ -1,4 +1,4 @@
 export interface Link {
   href: string;
-  method: "GET" | "POST";
+  method: "GET" | "POST" | "PUT";
 }

@@ -3,14 +3,9 @@ import { Link } from "../link";
 export type IIndexResource = {
   _links: {
     /**
-     * Request to get food category.
+     * Request to get tasks.
      */
-    categories: Link;
-
-    /**
-     * Request to get posts.
-     */
-    posts: Link;
+    tasks: Link;
 
     /**
      * Request to login.
@@ -41,5 +36,10 @@ export type IIndexResource = {
      * Request to confirm reset password.
      */
     confirmResetPassword: Link;
+
+    /**
+     * Request to get self user.
+     */
+    me: Link;
   };
 };

@@ -1,5 +1,6 @@
 import {Day} from "../../state/day";
 import {createActionCreators, createReducerFunction, ImmerReducer} from "immer-reducer";
+import {IPaginated} from "../../rest/paginated";
 
 export interface IDayStore {
     days: { [key: string]: Day };
@@ -14,6 +15,12 @@ const initialState: IDayStore = {
 export class DayReducer extends ImmerReducer<IDayStore> {
     addDay(day: Day) {
         this.draftState.days[day.id] = day;
+    }
+
+    setDays(days: IPaginated<Day>) {
+        for (let day of days.items) {
+            this.draftState.days[day.id] = day;
+        }
     }
 
     updateSummary(text: string, id: string) {

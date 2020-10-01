@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 import { IStore } from "./store";
 import { History } from "history";
-import {todoReducer} from "./todos/todo.reducer";
+import {todoReducer} from "./todos/taskReducer";
 import {dayReducer} from "./day/day.reducer";
 import {userReducer} from "./user/user.reducer";
 import {indexReducer} from "./index/index.reducer";

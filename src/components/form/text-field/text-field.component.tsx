@@ -1,7 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {ITextFieldProps} from "./text-field.props";
 
-import 'react-quill/dist/quill.snow.css';
 import {useFormContext} from "react-hook-form";
 import classNames from "classnames";
 import {TextFieldEditor} from "./text-field-editor.component";

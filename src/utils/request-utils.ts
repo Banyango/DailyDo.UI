@@ -40,19 +40,19 @@ export type HttpAction<T = void, P = void> = Action & {
      * Callback on pending.
      * @param value
      */
-    onPending?: (value: boolean) => AnyAction | Promise<AnyAction>;
+    onPending?: (value: boolean) => AnyAction;
 
     /**
      * Callback on success.
      * @param resources
      */
-    onSuccess: (resources: T) => AnyAction | Promise<AnyAction>;
+    onSuccess: (resources: T) => AnyAction;
 
     /**
      * Callback on error.
      * @param error
      */
-    onFailure?: (error: Error) => AnyAction | Promise<AnyAction>;
+    onFailure?: (error: Error) => AnyAction;
   };
 };
 

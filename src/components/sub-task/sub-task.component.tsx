@@ -57,7 +57,7 @@ export const SubTaskComponent: React.FC<ISubTaskProps> = (props) => {
     const submit = useRef<HTMLInputElement>();
     const debouncedSearchTerm = useDebounceCallback(() => {
         submit.current?.click();
-    }, 250);
+    }, 1500);
     return (
         <Draggable key={props.index} draggableId={props.index} index={props.order}>
             {(provided) => (
@@ -83,7 +83,11 @@ export const SubTaskComponent: React.FC<ISubTaskProps> = (props) => {
                                onChange={debouncedSearchTerm}
                         />
                         <input ref={submit} type="submit" hidden/>
-                        <button className="subtask_close-button" onClick={props.onDelete}>x</button>
+                        <button className="subtask_close-button" onClick={(e) => {
+                            e.preventDefault();
+                            props.onDelete();
+                        }}>x
+                        </button>
                     </Form>
                 </div>
             )}

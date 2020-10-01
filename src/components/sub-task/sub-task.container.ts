@@ -11,19 +11,19 @@ const mapDispatchToProps = (
     console.log(ownProps);
     return {
         onDelete: () => dispatch(TodoActions.deleteTodo(ownProps.parent, ownProps.index)),
-        onSubmit: (data) => dispatch(TodoActions.updateTodo(ownProps.parent, ownProps.index, data.checked, data.text))
+        onSubmit: (data) => dispatch(TodoActions.updateTodo(ownProps.parent, ownProps.index, data.text, data.checked))
     };
 };
 
 const mapStateToProps = (state: IStore, ownProps: ISubTaskOwnProps): ISubTaskStateProps => {
     const todo = TodoSelectors.todo(state, ownProps.parent, ownProps.index);
     return {
-        completed: todo.complete,
+        completed: todo?.completed,
         initializing: false,
         submitting: false,
         fields: {
-            checked: createFormField<boolean>("checked", todo?.complete, undefined, todo?.complete),
-            text: createFormField<string>("text", todo?.task, undefined, todo?.task),
+            checked: createFormField<boolean>("checked", todo?.completed, undefined, todo?.completed),
+            text: createFormField<string>("text", todo?.text, undefined, todo?.text),
         },
     };
 };

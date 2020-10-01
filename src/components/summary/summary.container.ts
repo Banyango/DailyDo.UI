@@ -11,7 +11,7 @@ const mapDispatchToProps = (
     console.log(ownProps);
     return {
         onDelete: () => dispatch(TodoActions.deleteTodo(ownProps.parent, ownProps.index)),
-        onSubmit: (data) => dispatch(TodoActions.updateSummary(ownProps.parent, ownProps.index, data.text))
+        onSubmit: (data) => dispatch(TodoActions.updateTodo(ownProps.parent, ownProps.index, data.text))
     };
 };
 
@@ -21,7 +21,7 @@ const mapStateToProps = (state: IStore, ownProps: ISummaryOwnProps): ISummarySta
         initializing: false,
         submitting: false,
         fields: {
-            text: createFormField<string>("text", undefined, undefined, todo.task),
+            text: createFormField<string>("text", undefined, undefined, todo?.text),
         },
     };
 };

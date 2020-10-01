@@ -46,7 +46,7 @@ export const SummaryComponent: React.FC<ISummaryProps> = (props) => {
     const submit = useRef<HTMLInputElement>();
     const debouncedSearchTerm = useDebounceCallback(() => {
         submit.current?.click();
-    }, 250);
+    }, 500);
     return (
         <Draggable key={props.index} draggableId={props.index} index={props.order}>
             {(provided) => (

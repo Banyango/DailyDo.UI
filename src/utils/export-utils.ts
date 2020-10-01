@@ -1,4 +1,3 @@
-import {TodoSelectors} from "../components/todo/todo.selectors";
 import {IStore} from "../store/store";
 import {Dispatch} from "redux";
 
@@ -9,14 +8,14 @@ export class ExportUtils {
 
             const state = getState();
 
-            Object.keys(state.todos.todos).forEach((key:string) => {
+            Object.keys(state.todos.task).forEach((key:string) => {
 
-                [...state.todos.todos[key]].sort((a, b) => a.order < b.order ? -1 : 1).forEach(e => {
-                    output = output.concat(`[${e.complete?'x':''}] ${e.task} \n`)
+                [...state.todos.task[key]].sort((a, b) => a.order < b.order ? -1 : 1).forEach(e => {
+                    output = output.concat(`[${e.completed?'x':''}] ${e.text} \n`);
 
-                    if(state.todos.todos[e.key]) {
-                        [...state.todos.todos[e.key]].sort((a, b) => a.order < b.order ? -1 : 1).forEach(e => {
-                            output = output.concat(`[${e.complete?'x':''}]   ${e.task}\n`);
+                    if(state.todos.task[e.id]) {
+                        [...state.todos.task[e.id]].sort((a, b) => a.order < b.order ? -1 : 1).forEach(e => {
+                            output = output.concat(`[${e.completed?'x':''}]   ${e.text}\n`);
                         })
                     }
                 })

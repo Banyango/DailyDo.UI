@@ -7,7 +7,7 @@ import {
 } from "react-hook-form/dist/types/form";
 import { Schema } from "yup";
 import {Ref} from "react";
-import {Todo} from "../../state/todo";
+import {Task} from "../../state/task";
 
 export interface IFormStateProps<TChildProps extends IFormChildProps> {
   /**

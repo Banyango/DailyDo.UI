@@ -2,12 +2,8 @@ import { IStore } from "../store";
 import { Link } from "../../rest/link";
 
 export class IndexSelectors {
-  public static getCategories(state: IStore): Link {
-    return state.index.index?._links.categories;
-  }
-
-  public static getPosts(state: IStore): Link {
-    return state.index.index?._links.posts;
+  public static getTasks(state: IStore): Link {
+    return state.index.index?._links.tasks;
   }
 
   static getLogin(state: IStore): Link {
@@ -28,5 +24,9 @@ export class IndexSelectors {
 
   static getConfirmResetPasswordLink(state: IStore): Link {
     return state.index.index?._links.confirmResetPassword;
+  }
+
+  static getMe(state: IStore) {
+    return state.index.index?._links.me;
   }
 }

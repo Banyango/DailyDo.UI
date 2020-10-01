@@ -11,6 +11,11 @@ export class TodoListComponent extends Component<ITodoListProps> {
     constructor(props:ITodoListProps) {
         super(props);
     }
+
+    componentDidMount(): void {
+        this.props.onInit();
+    }
+
     render(): React.ReactNode {
         const { onAddTodo, todos, parent, indentation } = this.props;
 
@@ -24,7 +29,7 @@ export class TodoListComponent extends Component<ITodoListProps> {
                         {...provided.droppableProps}
                         ref={provided.innerRef}>
                         {todos?.map((item, index) => (
-                            <TodoContainer parent={parent} indentation={indentation} key={item.key} index={item.key} order={index}/>
+                            <TodoContainer parent={parent} indentation={indentation} key={item.id} index={item.id} order={index}/>
                         ))}
                         {provided.placeholder}
                     </div>
