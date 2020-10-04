@@ -120,7 +120,7 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                          error={props.error}
                                          isSubmitting={props.submitting}>
                             <span className="grip"/>
-                            <Checkbox className="button" classNameInner="button-inner" type="checkbox"
+                            <Checkbox className="todo__button" classNameInner="todo__button-inner" type="checkbox"
                                       field={props.fields.checked} onChange={debouncedSearchTerm}/>
                             <Input className="text"
                                    classNameInner={classNames({"text-inner": true, completed: props.complete})}

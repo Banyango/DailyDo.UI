@@ -1,6 +1,5 @@
 nav {
   background: transparent;
-  padding: 1px 15px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -12,31 +11,17 @@ ul {
 a {
   color: black;
   text-decoration: none;
+  margin: 10px;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-.logo a:hover {
-  columns: #bfd1f1;
-  text-decoration: none;
-}
-
 .menu li {
   font-size: 14px;
   padding: 0.25em;
   white-space: nowrap;
-}
-
-.logo > svg {
-  margin-right: 0.25em;
-  font-size: 1.45em;
-}
-
-.logo a,
-.toggle a {
-  font-size: 19px;
 }
 
 .button.secondary {
@@ -54,21 +39,30 @@ a:hover {
 
 .toggle {
   order: 1;
+  margin-right: 10px;
 }
 
 .item.button {
   order: 2;
 }
 
+.menu:nth-child(2){
+  background: #8cd481;
+}
+
 .item {
   width: 100%;
   text-align: center;
   order: 3;
+
   display: none;
+  background: white;
 }
+
 
 .item.active {
   display: block;
+  z-index: 1;
 }
 
 /** Tablet **/
@@ -135,7 +129,7 @@ a:hover {
     order: 2;
   }
   .menu li {
-    padding: 15px 10px;
+
   }
   .menu li.button {
     padding-right: 0;

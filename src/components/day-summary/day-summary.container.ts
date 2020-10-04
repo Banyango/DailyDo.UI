@@ -1,11 +1,9 @@
 import {ThunkDispatch} from "redux-thunk";
 import {IDaySummaryDispatchProps, IDaySummaryOwnProps, IDaySummaryStateProps} from "./day-summary.types";
-import {IDayPageStateProps} from "../day/day-page.props";
 import {IStore} from "../../store/store";
 import {connect} from "react-redux";
 import {DaySummaryComponent} from "./day-summary.component";
 import {createFormField} from "../form/form.props";
-import {dayReducerActions} from "../../store/day/day.reducer";
 import {DayActions} from "../../store/day/day.actions";
 
 const mapDispatchToProps = (
@@ -13,7 +11,7 @@ const mapDispatchToProps = (
     ownProps:IDaySummaryOwnProps
 ): IDaySummaryDispatchProps => {
     return {
-        onSubmit: (data) => dispatch(dayReducerActions.updateSummary(data.summary, ownProps.dayId))
+        onSubmit: (data) => dispatch(DayActions.UpdateDay({id:ownProps.dayId, summary:data.summary}))
     };
 };
 

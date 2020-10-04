@@ -9,10 +9,9 @@ import {
   fas,
   faTimes,
   faBars,
-  faHamburger,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fas, faTimes, faBars, faHamburger);
+library.add(fas, faTimes, faBars);
 
 export interface INavBarProps extends INavBarStateProps{
 
@@ -32,20 +31,12 @@ export const Navbar: React.FC<INavBarProps> = props => {
   }, [active]);
   const style = classNames("item", { active });
   return (
-    <nav>
+    <nav className="navbar">
       <ul className="menu">
-        <li className="logo">
-          <a href="/">
-            <FontAwesomeIcon icon="hamburger" />
-            <span style={{paddingLeft:"1px"}}>DailyDo</span>
-          </a>
-        </li>
-        <li className={style}>
+        <li style={{marginTop:"15px"}} className={style}>
           <a href="/">Home</a>
         </li>
-        <li className={style}>
-          <a href="#">About</a>
-        </li>
+        {props.isLoggedIn ? (<li className={style}><a href="/logout">Logout</a></li>) : <></>}
         {!props.isLoggedIn ? <NavBarLogin active={active}/> : <></>}
         <li className="toggle" onClick={sendRequest}>
           <FontAwesomeIcon icon={!active ? "bars" : "times"} />
@@ -72,4 +63,3 @@ const NavBarLogin: React.FC<INavBarLoginProps> = props => {
       </>
   )
 };
-

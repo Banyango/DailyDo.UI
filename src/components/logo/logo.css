@@ -1,0 +1,41 @@
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    list-style: none;
+    color: white;
+}
+
+.logo a:hover {
+    columns: #bfd1f1;
+    text-decoration: none;
+}
+
+.logo > a > svg {
+    color: #ff4343;
+}
+
+.logo > a > span {
+    color: white;
+    margin-left: 3px;
+}
+
+.logo a,
+.toggle a {
+    font-size: 19px;
+}
+
+@media all and (min-width: 600px) {
+    .logo {
+        flex: 1;
+        margin-left: 0;
+    }
+}
+
+@media all and (min-width: 900px) {
+    .logo {
+        order: 0;
+    }
+}

@@ -23,7 +23,8 @@ const mapDispatchToProps = (
 
 const mapStateToProps = (state: IStore): IDayListStateProps => {
     return {
-        items: selectDays(state)
+        items: selectDays(state),
+        selectedDay: state.days.selectedDay
     }
 };
 

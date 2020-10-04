@@ -23,8 +23,8 @@ export class DayReducer extends ImmerReducer<IDayStore> {
         }
     }
 
-    updateSummary(text: string, id: string) {
-        this.draftState.days[id].summary = text;
+    setDay(day: Day) {
+        this.draftState.days[day.id] = day;
     }
 
     selectDay(dayId: string) {

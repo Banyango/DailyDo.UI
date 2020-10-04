@@ -9,12 +9,7 @@
     padding-left: 0;
     margin-bottom: 0;
     margin-top: 0;
-}
-
-
-.list__item:first-child {
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
+    background-color: #ff870a;
 }
 
 .list__item {
@@ -22,21 +17,24 @@
     display: block;
     padding: .75rem 1.25rem;
     margin-bottom: -1px;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(214, 214, 214, 0.11);
     cursor: pointer;
+    color: white;
+    background-color: #0b022d;
 }
 
 .list__item:hover {
-    background-color: #ababab;
+    background-color: #3d2db1;
+    /*color: black;*/
+
 }
 
-.active {
-    background-color: lightskyblue;
+.list__active {
+    margin-right: 8px;
     color: white;
 }
 
-.active:hover {
-    background-color: lightskyblue;
-    color: white;
+.list__active:hover {
+    background-color: #3d2db1;
+    /*color: black;*/
 }

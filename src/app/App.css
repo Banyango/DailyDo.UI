@@ -61,7 +61,59 @@ html, body {
 }
 
 .app__day_view {
-  margin-left: 160px;
-  margin-right: 10px;
+  margin: 20px 20px;
   flex: 1 1 auto;
+}
+
+.app__body {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-template-areas:
+          "logo header"
+          "sidenav main"
+          "sidenav footer";
+  height: 100vh;
+}
+
+.app__logo {
+  grid-area: logo;
+  background-color: #06163a;
+}
+
+.app__header {
+  grid-area: header;
+  background-color: #f0f9f6;
+
+}
+
+.app__sidenav {
+  grid-area: sidenav;
+  background-color: #0b022d;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.app__main {
+  grid-area: main;
+  /*background-color: #212459;*/
+
+}
+
+.app__addday_button {
+  border: none;
+  border-radius: 0px;
+  padding: 12px;
+  background-color: #ec4068;
+  color: white;
+}
+
+.app__addday_button:hover {
+  border: none;
+  border-radius: 0px;
+  padding: 12px;
+  background-color: #ff870a;
+  color: black;
+  cursor: pointer;
 }

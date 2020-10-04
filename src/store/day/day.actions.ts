@@ -39,15 +39,15 @@ export class DayActions {
         }
     }
 
-    public static UpdateDay(day: Day) {
+    public static UpdateDay(day: Pick<Day, 'id' | 'summary'>) {
         return async (dispatch:Dispatch, getState: ()=> IStore) => {
-            const action: HttpAction<Day, Day> = {
+            const action: HttpAction<Day, Pick<Day, 'id' | 'summary'>> = {
                 type: "PUT_DAY",
                 meta: {
                     type: "http",
                     method: "put",
                     href: `/api/v1/auth/days/${day.id}`,
-                    onSuccess: dayReducerActions.addDay,
+                    onSuccess: dayReducerActions.setDay,
                     payload: day,
                 },
             };

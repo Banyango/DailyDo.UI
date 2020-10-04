@@ -10,6 +10,15 @@ export type Item = {
 }
 
 export interface IListProps<T extends Item> {
+
+    /**
+     * The currently selected index
+     */
+    selectedIndex?: string;
+
+    /**
+     * Array of items.
+     */
     items: T[];
 
     /**
@@ -22,12 +31,21 @@ export interface IListProps<T extends Item> {
 export function List<T extends Item>(props: IListProps<T>): ReactElement {
     return (
         <ul className="list">
-            {props.items.map(i => <ListItem key={i.key} item={i} onClick={props.onClick}/>)}
+            {props.items.map(i => <ListItem selected={i.key===props.selectedIndex} key={i.key} item={i} onClick={props.onClick}/>)}
         </ul>
     )
 }
 
 export interface IListItemProps<T extends Item> {
+
+    /**
+     * True if item is selected; false otherwise.
+     */
+    selected: boolean;
+
+    /**
+     * Item
+     */
     item: T;
 
     /**
@@ -39,7 +57,7 @@ export interface IListItemProps<T extends Item> {
 
 function ListItem<T extends Item>(props: IListItemProps<T>): ReactElement {
     return (
-        <li className={classNames("list__item", {["active"]: props.item.selected})} onClick={()=> props.onClick(props.item.key)}>
+        <li className={classNames("list__item", {["list__active"]: props.selected})} onClick={()=> props.onClick(props.item.key)}>
             {props.item.value}
         </li>
     )

@@ -10,6 +10,11 @@ export interface IDayListStateProps {
      * Days list items
      */
     items: Item[];
+
+    /**
+     * The selected day.
+     */
+    selectedDay: string;
 }
 
 export interface IDayListDispatchProps {
@@ -22,6 +27,6 @@ export interface IDayListDispatchProps {
 
 export const DayList: React.FC<IDayListProps> = (props) => {
     return (
-        <List items={props.items} onClick={props.onClick}/>
+        <List selectedIndex={props.selectedDay} items={props.items} onClick={props.onClick}/>
     )
 };

@@ -17,33 +17,22 @@ import {LoginContainer} from "../components/pages/login/login.container";
 import {ConnectedRouter} from "connected-react-router";
 import {SpinnerComponent} from "../components/spinner/SpinnerComponent";
 import {NavBarContainer} from "../components/navbar/navbar.container";
+import {DayList} from "../components/day-list/day-list.component";
+import {Logo} from "../components/logo/logo.component";
 
 class App extends Component<IAppProps> {
     componentDidMount(): void {
         this.props.onInit();
     }
     render() {
-        const { initialized, loading, error } = this.props;
+        const { initialized, loading, error, day } = this.props;
 
         if (!initialized) {
-            return <></>;
+            return <><SpinnerComponent /></>;
         }
 
         return (
-            <>
-                <NavBarContainer />
-                {loading ? <SpinnerComponent /> : this.renderRoutes()}
-                <footer />
-            </>
-        );
-    }
-
-    private renderRoutes = () => {
-        return (
             <ConnectedRouter history={this.props.history}>
-                <Route exact path="/">
-                    {this.renderDay()}
-                </Route>
                 <Route path={AppRoutes.Login}>
                     <LoginContainer />
                 </Route>
@@ -59,10 +48,26 @@ class App extends Component<IAppProps> {
                 <Route path={AppRoutes.CheckEmail}>
                     <CheckEmailComponent />
                 </Route>
+                <div className="app__body">
+                    <div className="app__logo">
+                        <Logo/>
+                    </div>
+                    <div className="app__header">
+                        <NavBarContainer/>
+                    </div>
+                    <div className="app__sidenav">
+                        <MenuButton className="app__addday_button" name="Add Day" icon="calendar-plus" onClick={this.props.onAddDay}/>
+                        <DayListContainer />
+                    </div>
+                    <div className="app__main">
+                        <Route exact path="/">
+                            {day && <div className="app__day_view"><DayPageContainer day={this.props.day}/></div>}
+                        </Route>
+                    </div>
+                </div>
             </ConnectedRouter>
-        )
+        );
     }
-
 
     renderDay() {
         const {onAddDay, day, days, onSelectDay} = this.props;

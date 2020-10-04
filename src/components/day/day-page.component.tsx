@@ -11,7 +11,7 @@ export class DayPageComponent extends Component<IDayPageProps> {
         return (
             
             <div>
-                <DateBanner date={"July 5"}/>
+                <DateBanner date={day.date}/>
                 <DaySummaryContainer dayId={day.id} />
 
                 {/*<MenuButton name="Todos" onClick={this.onClickTodos} icon="check-double"/>*/}
