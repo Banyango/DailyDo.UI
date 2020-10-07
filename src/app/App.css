@@ -1,119 +1,117 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 .app__menu_buttons {
-  display: flex;
-  justify-content: space-evenly;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .app {
-  display: flex;
-  align-items: stretch;
-  height: 100%;
+    display: flex;
+    align-items: stretch;
+    height: 100%;
 }
 
 .app__side_bar {
-  display: flex;
-  flex-direction: column;
-  padding-right: 4px;
-  margin-right: 6px;
-  border-right: 1px solid #ececec;
-  width: 150px;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #e5e5e5; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 4px;
+    margin-right: 6px;
+    border-right: 1px solid #ececec;
+    width: 150px;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #e5e5e5; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
 }
 
 .app__day_view {
-  margin: 20px 20px;
-  flex: 1 1 auto;
+    margin: 20px 20px;
+    flex: 1 1 auto;
 }
 
 .app__body {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  grid-template-rows: 60px 1fr;
-  grid-template-areas:
-          "logo header"
-          "sidenav main"
-          "sidenav footer";
-  height: 100vh;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas: "logo header" "sidenav main" "sidenav footer";
+    height: 100vh;
 }
 
 .app__logo {
-  grid-area: logo;
-  background-color: #06163a;
+    grid-area: logo;
+    background-color: #06163a;
 }
 
 .app__header {
-  grid-area: header;
-  background-color: #f0f9f6;
+    grid-area: header;
+    background-color: #f0f9f6;
 
 }
 
 .app__sidenav {
-  grid-area: sidenav;
-  background-color: #0b022d;
+    grid-area: sidenav;
+    background-color: #0b022d;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .app__main {
-  grid-area: main;
-  /*background-color: #212459;*/
-
+    grid-area: main;
+    /*background-color: #212459;*/
+    max-height: 100vh;
+    overflow-y: scroll;
 }
 
 .app__addday_button {
-  border: none;
-  border-radius: 0px;
-  padding: 12px;
-  background-color: #ec4068;
-  color: white;
+    border: none;
+    border-radius: 0px;
+    padding: 12px;
+    background-color: #ec4068;
+    color: white;
 }
 
 .app__addday_button:hover {
-  border: none;
-  border-radius: 0px;
-  padding: 12px;
-  background-color: #ff870a;
-  color: black;
-  cursor: pointer;
+    border: none;
+    border-radius: 0px;
+    padding: 12px;
+    background-color: #ff870a;
+    color: black;
+    cursor: pointer;
 }

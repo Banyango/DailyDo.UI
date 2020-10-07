@@ -13,6 +13,7 @@ import './todo.css';
 import {Task} from "../../state/task";
 import {DropdownButton} from "../dropdown-button/dropdown.button";
 import {SummaryContainer} from "../summary/summary.container";
+import {SpinnerComponent} from "../spinner/SpinnerComponent";
 
 export interface ITodoProps extends ITodoPageDispatchProps, ITodoStateProps, ITodoOwnProps {
     /**
@@ -82,6 +83,11 @@ export interface ITodoStateProps extends IFormStateProps<ITodoForm> {
      * Sub task
      */
     todos: Task[];
+
+    /**
+     * True if loading; false otherwise.
+     */
+    loading: boolean;
 }
 
 export interface ITodoForm {
@@ -136,35 +142,41 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                 props.onDelete();
                             }}>x</button>
                         </Form>
-                        <Droppable
-                            droppableId={props.index}
-                            type="SUB_TASK">
-                            {provided => (
-                                <div
-                                    ref={provided.innerRef}
-                                    {...provided.droppableProps}>
-                                    {
-                                        props.todos?.map((item, index) => {
-                                            if(item.type === 'SubTask') {
-                                                return (
-                                                    <SubTaskContainer parent={item.parent} key={item.id} index={item.id}
-                                                                      order={index} onKeyDown={props.onEnterPressOnSubTask}/>
-                                                )
-                                            } else {
-                                                return (
-                                                    <SummaryContainer parent={item.parent} key={item.id} index={item.id}
-                                                                      order={index}/>
-                                                )
-                                            }
-                                        }
-                                        )}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
+                        {!props.loading ? <TodoChildren {...props} /> : <div className="todo__spinner"><SpinnerComponent/></div> }
                     </div>
                 </div>
             )}
         </Draggable>
+    )
+};
+
+const TodoChildren: React.FC<ITodoProps> = props => {
+    return (
+        <Droppable
+            droppableId={props.index}
+            type="SUB_TASK">
+            {provided => (
+                <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}>
+                    {
+                        props.todos?.map((item, index) => {
+                                if(item.type === 'SubTask') {
+                                    return (
+                                        <SubTaskContainer parent={item.parent} key={item.id} index={item.id}
+                                                          order={index} onKeyDown={props.onEnterPressOnSubTask}/>
+                                    )
+                                } else {
+                                    return (
+                                        <SummaryContainer parent={item.parent} key={item.id} index={item.id}
+                                                          order={index}/>
+                                    )
+                                }
+                            }
+                        )}
+                    {provided.placeholder}
+                </div>
+            )}
+        </Droppable>
     )
 };

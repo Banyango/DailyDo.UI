@@ -29,6 +29,7 @@ const mapStateToProps = (state: IStore, ownProps: ITodoOwnProps): ITodoStateProp
     return {
         complete: todo?.completed,
         todos: state.todos.task[ownProps.index],
+        loading: state.todos.pending[todo.id],
         initializing: false,
         submitting: false,
         fields: {

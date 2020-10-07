@@ -6,10 +6,12 @@ import {ICollection} from "../../rest/collection";
 
 export interface ITaskStore {
     task: { [key: string]: Task[] };
+    pending: { [key: string]: boolean };
 }
 
 const initialState: ITaskStore = {
     task: {"": []},
+    pending: {},
 };
 
 export class TaskReducer extends ImmerReducer<ITaskStore> {
@@ -23,6 +25,10 @@ export class TaskReducer extends ImmerReducer<ITaskStore> {
         } else {
             this.draftState.task[task.parent].push(task);
         }
+    }
+
+    setPending(pending: boolean, id: string) {
+        this.draftState.pending[id] = pending;
     }
 
     addTasks(tasks: ICollection<Task>) {

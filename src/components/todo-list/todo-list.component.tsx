@@ -6,6 +6,7 @@ import {ITodoListProps} from "./todo-list.props";
 
 import './todo-list.css';
 import {SectionHeader} from "../section-header/section-header.component";
+import {SpinnerComponent} from "../spinner/SpinnerComponent";
 
 export class TodoListComponent extends Component<ITodoListProps> {
     constructor(props:ITodoListProps) {
@@ -20,7 +21,6 @@ export class TodoListComponent extends Component<ITodoListProps> {
         if (nextProps.parent !== this.props.parent) {
             this.props.onInit();
         }
-
     }
 
     componentWillUnmount(): void {
@@ -28,7 +28,11 @@ export class TodoListComponent extends Component<ITodoListProps> {
     }
 
     render(): React.ReactNode {
-        const { onAddTodo, todos, parent, indentation } = this.props;
+        const { loading, onAddTodo, todos, parent, indentation } = this.props;
+
+        if (loading) {
+            return <div className="todo-list__spinner"><SpinnerComponent/></div>
+        }
 
         const board = (
             <Droppable

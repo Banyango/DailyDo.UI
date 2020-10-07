@@ -21,7 +21,8 @@ const mapDispatchToProps = (
 
 const mapStateToProps = (state: IStore, ownProps:ITodoListOwnProps): ITodoListStateProps => {
     return {
-        todos: state.todos.task[ownProps.parent]
+        todos: state.todos.task[ownProps.parent],
+        loading: state.todos.pending[ownProps.parent]
     }
 };
 

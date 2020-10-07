@@ -17,9 +17,11 @@ export class TodoActions {
             const action: HttpAction<ICollection<Task>> = {
                 type: "GET_TASK",
                 meta: {
+                    id: parent,
                     type: "http",
                     method: "get",
                     href: `${link.href}/${parent}/tasks`,
+                    onPending: todoReducerActions.setPending,
                     onSuccess: todoReducerActions.addTasks
                 },
             };
@@ -38,9 +40,11 @@ export class TodoActions {
             const action: HttpAction<ICollection<Task>> = {
                 type: "GET_ITEMS",
                 meta: {
+                    id: parent,
                     type: "http",
                     method: "get",
                     href: `${link.href}/${parent}/items`,
+                    onPending: todoReducerActions.setPending,
                     onSuccess: todoReducerActions.addTasks
                 },
             };

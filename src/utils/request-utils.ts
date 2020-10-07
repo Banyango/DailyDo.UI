@@ -6,6 +6,11 @@ export type HttpAction<T = void, P = void> = Action & {
    */
   meta: {
     /**
+     * pending id.
+     */
+    id?: string;
+
+    /**
      * type of request.
      */
     type: "http";
@@ -40,7 +45,7 @@ export type HttpAction<T = void, P = void> = Action & {
      * Callback on pending.
      * @param value
      */
-    onPending?: (value: boolean) => AnyAction;
+    onPending?: (value: boolean, id: string) => AnyAction;
 
     /**
      * Callback on success.

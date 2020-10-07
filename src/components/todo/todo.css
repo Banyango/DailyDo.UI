@@ -32,6 +32,14 @@
     display: flex;
 }
 
+
+.todo__spinner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+}
+
 .todo__button-inner {
     padding: 4px 9px;
     margin: 5px;

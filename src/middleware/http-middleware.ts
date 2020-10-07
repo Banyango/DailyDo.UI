@@ -9,7 +9,7 @@ export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
         }
 
         if (action.meta.onPending) {
-            await dispatch(action.meta.onPending(true));
+            await dispatch(action.meta.onPending(true, action.meta?.id));
         }
 
         await axios
@@ -24,14 +24,14 @@ export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
                 },
             })
             .then(async (response) => {
-                if(action.meta.onPending) {
-                    await dispatch(action.meta.onPending(false));
+                if (action.meta.onPending) {
+                    await dispatch(action.meta.onPending(false, action.meta?.id));
                 }
                 await dispatch(action.meta?.onSuccess(response.data));
             })
             .catch(async (error) => {
-                if(action.meta.onPending) {
-                    await dispatch(action.meta.onPending(false));
+                if (action.meta.onPending) {
+                    await dispatch(action.meta.onPending(false, action.meta?.id));
                 }
 
                 if (action.meta.onFailure) {

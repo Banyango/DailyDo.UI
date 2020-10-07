@@ -17,6 +17,11 @@ export interface ITodoListStateProps  {
      * Todos
      */
     todos: Task[];
+
+    /**
+     * True if task is loading; false otherwise
+     */
+    loading: boolean;
 }
 
 export interface ITodoListDispatchProps {

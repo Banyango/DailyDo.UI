@@ -4,10 +4,8 @@ import "./spinner.css";
 
 export function SpinnerComponent() {
   return (
-    <div className="spinner">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+      <div className="spinner" role="status">
+          <span className="sr-only">Loading</span>
+      </div>
   );
 }
