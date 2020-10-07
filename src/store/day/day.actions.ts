@@ -4,6 +4,10 @@ import {dayReducerActions} from "./day.reducer";
 import {HttpAction} from "../../utils/request-utils";
 import {Day} from "../../state/day";
 import {IPaginated} from "../../rest/paginated";
+import {push} from "connected-react-router";
+import {AppRoutes} from "../../app/Routes";
+import {Task} from "../../state/task";
+import {todoReducerActions} from "../todos/taskReducer";
 
 export class DayActions {
 
@@ -56,9 +60,26 @@ export class DayActions {
         }
     }
 
+    static deleteDay(id: string) {
+        return async (dispatch: Dispatch) => {
+            const action: HttpAction<void, Pick<Day, "id" >> = {
+                type: "DELETE_DAY",
+                meta: {
+                    type: "http",
+                    method: "delete",
+                    href: `/api/v1/auth/days/${id}`,
+                    onSuccess: () => dayReducerActions.removeDay(id),
+                },
+            };
+
+            return dispatch(action);
+        }
+    }
+
     public static SelectDay(day: string) {
         return async (dispatch:Dispatch, getState: ()=> IStore) => {
-            dispatch(dayReducerActions.selectDay(day));
+            await dispatch(dayReducerActions.selectDay(day));
+            return dispatch(push(AppRoutes.Days(day)));
         }
     }
 

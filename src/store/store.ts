@@ -20,11 +20,22 @@ export interface IStore {
   router: any;
 }
 
+
 export default function configureStore(history: any) {
   const composeEnhancers: typeof compose =
     (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  const appReducer = createRootReducer(history);
+  const rootReducer = (state, action) => {
+    if (action.type === 'APP_RESET') {
+      const {router, index} = state;
+      state = {router, index};
+    }
+    return appReducer(state,action)
+  };
+
   return createStore(
-    createRootReducer(history),
+    rootReducer,
     {},
     composeEnhancers(
       applyMiddleware(...[thunk, routerMiddleware(history), httpMiddleware])

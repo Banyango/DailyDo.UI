@@ -17,8 +17,8 @@ import {LoginContainer} from "../components/pages/login/login.container";
 import {ConnectedRouter} from "connected-react-router";
 import {SpinnerComponent} from "../components/spinner/SpinnerComponent";
 import {NavBarContainer} from "../components/navbar/navbar.container";
-import {DayList} from "../components/day-list/day-list.component";
 import {Logo} from "../components/logo/logo.component";
+import {LogoutContainer} from "../components/pages/logout/logout.container";
 
 class App extends Component<IAppProps> {
     componentDidMount(): void {
@@ -48,23 +48,28 @@ class App extends Component<IAppProps> {
                 <Route path={AppRoutes.CheckEmail}>
                     <CheckEmailComponent />
                 </Route>
-                <div className="app__body">
-                    <div className="app__logo">
-                        <Logo/>
+                <Route path={AppRoutes.Logout}>
+                    <LogoutContainer />
+                </Route>
+                <Route path="/app*">
+                    <div className="app__body">
+                        <div className="app__logo">
+                            <Logo/>
+                        </div>
+                        <div className="app__header">
+                            <NavBarContainer/>
+                        </div>
+                        <div className="app__sidenav">
+                            <MenuButton className="app__addday_button" name="Add Day" icon="calendar-plus" onClick={this.props.onAddDay}/>
+                            <DayListContainer />
+                        </div>
+                        <div className="app__main">
+                            <Route path="/app/day*">
+                                {day && <div className="app__day_view"><DayPageContainer day={this.props.day}/></div>}
+                            </Route>
+                        </div>
                     </div>
-                    <div className="app__header">
-                        <NavBarContainer/>
-                    </div>
-                    <div className="app__sidenav">
-                        <MenuButton className="app__addday_button" name="Add Day" icon="calendar-plus" onClick={this.props.onAddDay}/>
-                        <DayListContainer />
-                    </div>
-                    <div className="app__main">
-                        <Route exact path="/">
-                            {day && <div className="app__day_view"><DayPageContainer day={this.props.day}/></div>}
-                        </Route>
-                    </div>
-                </div>
+                </Route>
             </ConnectedRouter>
         );
     }

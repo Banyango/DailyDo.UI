@@ -105,7 +105,11 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
     }];
     useEffect(()=> {
         props.onInit();
-    }, []);
+
+        return () => {
+            props.onDispose();
+        }
+    }, [props.index]);
     return (
         <Draggable key={props.index} draggableId={props.index} index={props.order}>
             {(provided) => (

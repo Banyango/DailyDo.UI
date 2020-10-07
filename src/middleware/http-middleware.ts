@@ -1,7 +1,6 @@
 import axios from "axios";
 import {Dispatch, MiddlewareAPI} from "redux";
 import {HttpAction} from "../utils/request-utils";
-import Cookies from "js-cookie";
 
 export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
     return (next: Dispatch) => async (action: HttpAction) => {
@@ -28,7 +27,7 @@ export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
                 if(action.meta.onPending) {
                     await dispatch(action.meta.onPending(false));
                 }
-                await dispatch(action.meta.onSuccess(response.data));
+                await dispatch(action.meta?.onSuccess(response.data));
             })
             .catch(async (error) => {
                 if(action.meta.onPending) {

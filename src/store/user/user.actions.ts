@@ -57,7 +57,10 @@ export class UserActions {
       };
 
       await dispatch(action);
-      return dispatch(push("/"))
+
+      if (!!getState().user.user) {
+        return dispatch(push(AppRoutes.Home))
+      }
     };
   }
 
@@ -199,5 +202,32 @@ export class UserActions {
 
       return dispatch(action);
     }
+  }
+
+  static logout() {
+    return async (dispatch: Dispatch, getState: () => IStore) => {
+      const link = IndexSelectors.getLogout(getState());
+      if (!link) {
+        return;
+      }
+
+      const action: HttpAction = {
+        type: "POST_LOGOUT",
+        meta: {
+          type: "http",
+          method: "post",
+          href: link.href
+        }
+      };
+
+      await dispatch(action);
+
+      await dispatch({
+        type: "APP_RESET",
+        payload: {}
+      });
+
+      return dispatch(push(AppRoutes.Login))
+    };
   }
 }

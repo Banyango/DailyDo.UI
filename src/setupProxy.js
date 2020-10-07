@@ -12,11 +12,13 @@ module.exports = function(app) {
             onProxyRes(proxyRes, req, res) {
                 if (proxyRes.headers['set-cookie']) {
                     setCookie = proxyRes.headers['set-cookie'];
+                    console.log(setCookie);
                 }
             },
             onProxyReq(proxyReq, req, res) {
                 if (setCookie) {
                     proxyReq.setHeader('Cookie', setCookie);
+                    console.log(setCookie)
                 }
             }
 

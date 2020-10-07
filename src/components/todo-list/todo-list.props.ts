@@ -46,4 +46,9 @@ export interface ITodoListDispatchProps {
      * Emitted on add todo.
      */
     onAddTodo: () => void;
+
+    /**
+     * Emitted when component unmounts.
+     */
+    onDispose: () => void;
 }

@@ -7,7 +7,13 @@ export interface ILoginPageProps
 export interface ILoginPageDispatchProps
   extends IFormDispatchProps<ILoginForm> {}
 
-export interface ILoginStateProps extends IFormStateProps<ILoginForm> {}
+export interface ILoginStateProps extends IFormStateProps<ILoginForm> {
+
+  /**
+   * True if user is loged in; false otherwise.
+   */
+  isLoggedIn:boolean;
+}
 
 export interface ILoginForm {
   /**

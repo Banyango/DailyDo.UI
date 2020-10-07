@@ -26,7 +26,13 @@ interface IDropdownProps {
      * Dropdown buttons
      */
     buttons: DropDownButton[];
+
+    /**
+     * Inner text to display
+     */
+    innerText?: string;
 }
+
 
 export const DropdownButton: React.FC<IDropdownProps> = (props) => {
     const [expanded, setExpanded] = useState(false);
@@ -35,7 +41,7 @@ export const DropdownButton: React.FC<IDropdownProps> = (props) => {
             <button className="dropdown__button" onClick={(e) => {
                 e.preventDefault();
                 setExpanded(!expanded);
-            }} onBlur={() => setExpanded(false)}>+
+            }} onBlur={() => setExpanded(false)}>{props.innerText}
             </button>
             {expanded &&
             <ul className="dropdown">
@@ -47,4 +53,8 @@ export const DropdownButton: React.FC<IDropdownProps> = (props) => {
             </ul>}
         </div>
     );
+};
+
+DropdownButton.defaultProps = {
+    innerText:"+"
 };

@@ -10,6 +10,10 @@ export class IndexSelectors {
     return state.index.index?._links.login;
   }
 
+  static getLogout(state: IStore): Link {
+    return state.index.index?._links.logout;
+  }
+
   static getRegister(state: IStore): Link {
     return state.index.index?._links.register;
   }

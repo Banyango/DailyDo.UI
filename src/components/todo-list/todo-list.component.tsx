@@ -16,6 +16,17 @@ export class TodoListComponent extends Component<ITodoListProps> {
         this.props.onInit();
     }
 
+    componentWillReceiveProps(nextProps: Readonly<ITodoListProps>, nextContext: any): void {
+        if (nextProps.parent !== this.props.parent) {
+            this.props.onInit();
+        }
+
+    }
+
+    componentWillUnmount(): void {
+        this.props.onDispose();
+    }
+
     render(): React.ReactNode {
         const { onAddTodo, todos, parent, indentation } = this.props;
 

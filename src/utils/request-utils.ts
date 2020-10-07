@@ -46,7 +46,7 @@ export type HttpAction<T = void, P = void> = Action & {
      * Callback on success.
      * @param resources
      */
-    onSuccess: (resources: T) => AnyAction;
+    onSuccess?: (resources: T) => AnyAction;
 
     /**
      * Callback on error.
