@@ -6,8 +6,6 @@ import {Day} from "../../state/day";
 import {IPaginated} from "../../rest/paginated";
 import {push} from "connected-react-router";
 import {AppRoutes} from "../../app/Routes";
-import {Task} from "../../state/task";
-import {todoReducerActions} from "../todos/taskReducer";
 
 export class DayActions {
 

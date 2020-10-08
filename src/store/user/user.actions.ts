@@ -6,6 +6,8 @@ import { Dispatch } from "redux";
 import { User } from "../../rest/user/user";
 import { push } from "connected-react-router";
 import { AppRoutes } from "../../app/Routes";
+import {DayActions} from "../day/day.actions";
+import {ThunkDispatch} from "redux-thunk";
 
 type UserLoginParam = {
   email: string;
@@ -34,7 +36,7 @@ type GetMe = {
 
 export class UserActions {
   static login(email: string, password: string) {
-    return async (dispatch: Dispatch, getState: () => IStore) => {
+    return async (dispatch: ThunkDispatch<{}, {}, any>, getState: () => IStore) => {
       const link = IndexSelectors.getLogin(getState());
       if (!link) {
         return;
@@ -57,6 +59,8 @@ export class UserActions {
       };
 
       await dispatch(action);
+
+      await dispatch(DayActions.getDays());
 
       if (!!getState().user.user) {
         return dispatch(push(AppRoutes.Home))
