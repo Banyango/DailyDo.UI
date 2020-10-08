@@ -13,7 +13,7 @@ import './todo.css';
 import {Task} from "../../state/task";
 import {DropdownButton} from "../dropdown-button/dropdown.button";
 import {SummaryContainer} from "../summary/summary.container";
-import {SpinnerComponent} from "../spinner/SpinnerComponent";
+import {SpinnerComponent} from "../spinner/spinner.component";
 
 export interface ITodoProps extends ITodoPageDispatchProps, ITodoStateProps, ITodoOwnProps {
     /**
@@ -142,7 +142,7 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                 props.onDelete();
                             }}>x</button>
                         </Form>
-                        {!props.loading ? <TodoChildren {...props} /> : <div className="todo__spinner"><SpinnerComponent/></div> }
+                        {!props.loading ? <TodoChildren {...props} /> : <div className="todo__spinner"><SpinnerComponent delay/></div> }
                     </div>
                 </div>
             )}

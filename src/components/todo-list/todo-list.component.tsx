@@ -6,7 +6,7 @@ import {ITodoListProps} from "./todo-list.props";
 
 import './todo-list.css';
 import {SectionHeader} from "../section-header/section-header.component";
-import {SpinnerComponent} from "../spinner/SpinnerComponent";
+import {SpinnerComponent} from "../spinner/spinner.component";
 
 export class TodoListComponent extends Component<ITodoListProps> {
     constructor(props:ITodoListProps) {

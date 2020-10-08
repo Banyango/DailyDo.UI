@@ -15,7 +15,7 @@ import {ResetPasswordContainer} from "../components/pages/reset-password/reset-p
 import {RegisterContainer} from "../components/pages/register/register.container";
 import {LoginContainer} from "../components/pages/login/login.container";
 import {ConnectedRouter} from "connected-react-router";
-import {SpinnerComponent} from "../components/spinner/SpinnerComponent";
+import {SpinnerComponent} from "../components/spinner/spinner.component";
 import {NavBarContainer} from "../components/navbar/navbar.container";
 import {Logo} from "../components/logo/logo.component";
 import {LogoutContainer} from "../components/pages/logout/logout.container";
