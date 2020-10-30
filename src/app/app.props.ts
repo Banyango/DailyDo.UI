@@ -25,7 +25,13 @@ export interface IAppStateProps {
   initialized: boolean;
 
   day: Day;
+
   days: Day[];
+
+  /**
+   * True if logged in; false otherwise.
+   */
+  isLoggedIn:boolean;
 }
 
 export interface IAppDispatchProps {

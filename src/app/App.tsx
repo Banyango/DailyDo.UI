@@ -9,7 +9,7 @@ import './App.css';
 
 import {CheckEmailComponent} from "../components/pages/check-email/check-email.component";
 import {AppRoutes} from "./Routes";
-import {Route} from "react-router";
+import {Redirect, Route} from "react-router";
 import {ConfirmContainer} from "../components/pages/confirm/confirm.container";
 import {ResetPasswordContainer} from "../components/pages/reset-password/reset-password.container";
 import {RegisterContainer} from "../components/pages/register/register.container";
@@ -25,7 +25,7 @@ class App extends Component<IAppProps> {
         this.props.onInit();
     }
     render() {
-        const { initialized, loading, error, day } = this.props;
+        const { initialized, loading, error, day, isLoggedIn } = this.props;
 
         if (!initialized) {
             return <><SpinnerComponent /></>;
@@ -52,6 +52,7 @@ class App extends Component<IAppProps> {
                     <LogoutContainer />
                 </Route>
                 <Route path="/app*">
+                    {!isLoggedIn && <Redirect to={AppRoutes.Login}/>}
                     <div className="app__body">
                         <div className="app__logo">
                             <Logo/>

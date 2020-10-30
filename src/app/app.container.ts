@@ -21,6 +21,7 @@ const mapDispatchToProps = (
 const mapStateToProps = (state: IStore): IAppStateProps => {
   return {
     initialized: !!state.index.index,
+    isLoggedIn: !!state.user.user,
     loading: state.index.pending || state.user.mePending,
     error: state.index.error,
     day: DayActions.getSelectedDay(state),
