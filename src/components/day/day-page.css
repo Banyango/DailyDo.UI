@@ -2,3 +2,11 @@
     display: flex;
     justify-content: space-between;
 }
+
+.day-page__spinner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 6px;
+}

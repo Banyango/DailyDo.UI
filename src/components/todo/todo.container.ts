@@ -10,7 +10,7 @@ const mapDispatchToProps = (
 ): ITodoPageDispatchProps => {
     console.log(ownProps);
     return {
-        onInit: () => dispatch(TodoActions.getItems(ownProps.index)),
+        onInit: () => {},
         onEnterPressOnSubTask: (event) => {
             if (event.key === "Enter") {
                 dispatch(TodoActions.addSubtask(ownProps.index));

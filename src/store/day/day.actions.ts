@@ -60,7 +60,7 @@ export class DayActions {
 
     static deleteDay(id: string) {
         return async (dispatch: Dispatch) => {
-            const action: HttpAction<void, Pick<Day, "id" >> = {
+            const action: HttpAction<void, Pick<Day, 'id' >> = {
                 type: "DELETE_DAY",
                 meta: {
                     type: "http",

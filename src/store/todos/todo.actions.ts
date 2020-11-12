@@ -4,6 +4,7 @@ import {todoReducerActions} from "./taskReducer";
 import {HttpAction} from "../../utils/request-utils";
 import {Task} from "../../state/task";
 import {ICollection} from "../../rest/collection";
+import {TasksByDay} from "../../rest/day/tasks-by-day";
 
 export class TodoActions {
 
@@ -23,6 +24,29 @@ export class TodoActions {
                     href: `${link.href}/${parent}/tasks`,
                     onPending: todoReducerActions.setPending,
                     onSuccess: todoReducerActions.addTasks
+                },
+            };
+
+            return dispatch(action);
+        }
+    }
+
+
+    /**
+     * Get tasks for a day.
+     * @param id    Id of the day.
+     */
+    public static getTasksForDay(id: string) {
+        return async (dispatch:Dispatch, getState: ()=> IStore) => {
+            const action: HttpAction<TasksByDay> = {
+                type: "GET_TASKS_FOR_DAY",
+                meta: {
+                    id: id,
+                    type: "http",
+                    method: "get",
+                    href: `/api/v1/auth/days/${id}/tasks`,
+                    onPending: todoReducerActions.setPending,
+                    onSuccess: todoReducerActions.addAllTasksForDay
                 },
             };
 

@@ -3,6 +3,7 @@ import {createActionCreators, createReducerFunction, ImmerReducer} from "immer-r
 import {ArrayUtils} from "../../utils/array-utils";
 import {IPaginated} from "../../rest/paginated";
 import {ICollection} from "../../rest/collection";
+import {TasksByDay} from "../../rest/day/tasks-by-day";
 
 export interface ITaskStore {
     task: { [key: string]: Task[] };
@@ -34,6 +35,18 @@ export class TaskReducer extends ImmerReducer<ITaskStore> {
     addTasks(tasks: ICollection<Task>) {
         for (let i = 0; i < tasks.items.length; i++) {
             this.addTask(tasks.items[i]);
+        }
+    }
+
+    addAllTasksForDay(response: TasksByDay) {
+        for (let i = 0; i < response.tasks.length; i++) {
+            const taskResponse = response.tasks[i];
+
+            this.addTask(taskResponse?.task);
+
+            for (let j = 0; j < taskResponse?.children?.length; j++) {
+                this.addTask(taskResponse.children[j]);
+            }
         }
     }
 

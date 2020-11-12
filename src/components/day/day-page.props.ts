@@ -1,6 +1,10 @@
 import {Day} from "../../state/day";
 
-export interface IDayPageProps extends IDayPageDispatchProps, IDayPageStateProps {
+export interface IDayPageProps extends IDayPageDispatchProps, IDayPageStateProps, IDayPageOwnProps {
+
+}
+
+export interface IDayPageOwnProps {
     /**
      * Day.
      */
@@ -14,6 +18,19 @@ export interface IDayPageDispatchProps {
      * @param id    The Id of the day to delete.
      */
     onDeleteDay: (id:string) => void;
+
+    /**
+     * Emitted when component is mounted.
+     * @param id    The Id of the day to load.
+     */
+    onInit: (id:string) => void;
+
 }
 
-export interface IDayPageStateProps {}
+export interface IDayPageStateProps {
+
+    /**
+     * True if loading; false otherwise.
+     */
+    loading:boolean;
+}

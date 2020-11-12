@@ -14,6 +14,7 @@ import {Task} from "../../state/task";
 import {DropdownButton} from "../dropdown-button/dropdown.button";
 import {SummaryContainer} from "../summary/summary.container";
 import {SpinnerComponent} from "../spinner/spinner.component";
+import {DropdownButtonItem} from "../dropdown-button/dropdown-button-item/dropdown-button-item.component";
 
 export interface ITodoProps extends ITodoPageDispatchProps, ITodoStateProps, ITodoOwnProps {
     /**
@@ -100,15 +101,6 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
     const debouncedSearchTerm = useDebounceCallback(() => {
         submit.current?.click();
     }, 1500);
-    const contextButtons =[{
-        key:'1',
-        name:"Add Sub-Task",
-        onClick: props.onAddSubTask
-    }, {
-        key:'2',
-        name:"Add Note",
-        onClick: props.onAddSummary
-    }];
     useEffect(()=> {
         props.onInit();
 
@@ -136,7 +128,10 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                                    classNameInner={classNames({"text-inner": true, completed: props.complete})}
                                    type="text" field={props.fields.text} onChange={debouncedSearchTerm}/>
                             <input ref={submit} type="submit" hidden/>
-                            <DropdownButton buttons={contextButtons} />
+                            <DropdownButton>
+                                <DropdownButtonItem key="1" name="Add Sub-Task" onClick={props.onAddSubTask}/>
+                                <DropdownButtonItem key="2" name="Add Note" onClick={props.onAddSummary}/>
+                            </DropdownButton>
                             <button className="todo__close-button" onClick={(e)=> {
                                 e.preventDefault();
                                 props.onDelete();

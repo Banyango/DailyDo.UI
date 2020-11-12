@@ -1,41 +1,19 @@
-import React, {useState} from 'react';
+import React, {ReactElement, useState} from 'react';
+
+import {DropdownButtonList} from "./dropdown-button-list/dropdown-button-list.component";
 
 import './dropdown-button.css';
 
-export type DropDownButton = {
-
-    /**
-     * Key
-     */
-    key: string;
-
-
-    /**
-     * Drop down selection name.
-     */
-    name: string;
-
-    /**
-     * Emitted on click.
-     */
-    onClick: () => void;
-}
-
 interface IDropdownProps {
-    /**
-     * Dropdown buttons
-     */
-    buttons: DropDownButton[];
-
     /**
      * Inner text to display
      */
     innerText?: string;
 }
 
-
 export const DropdownButton: React.FC<IDropdownProps> = (props) => {
     const [expanded, setExpanded] = useState(false);
+    const onClick = () => setExpanded(false);
     return (
         <div className="dropdown-button-group">
             <button className="dropdown__button" onClick={(e) => {
@@ -44,17 +22,17 @@ export const DropdownButton: React.FC<IDropdownProps> = (props) => {
             }} onBlur={() => setExpanded(false)}>{props.innerText}
             </button>
             {expanded &&
-            <ul className="dropdown">
-                {props.buttons.map(b => <li className="dropdown-selection" onClick={(e) => {
-                    e.preventDefault();
-                    setExpanded(false);
-                    b.onClick()
-                }}>{b.name}</li>)}
-            </ul>}
+            <DropdownButtonList>
+                {React.Children.map(props.children, child => {
+                    const element = child as ReactElement;
+                    return element ? React.cloneElement(element, {setExpanded: onClick}) : null
+                })}
+            </DropdownButtonList>
+            }
         </div>
     );
 };
 
 DropdownButton.defaultProps = {
-    innerText:"+"
+    innerText: "+"
 };
