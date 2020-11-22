@@ -16,11 +16,11 @@ export const DropdownButton: React.FC<IDropdownProps> = (props) => {
     const onClick = () => setExpanded(false);
     return (
         <div className="dropdown-button-group">
-            <button className="dropdown__button" onClick={(e) => {
+            {!expanded && <button className="dropdown__button" onClick={(e) => {
                 e.preventDefault();
                 setExpanded(!expanded);
             }} onBlur={() => setExpanded(false)}>{props.innerText}
-            </button>
+            </button>}
             {expanded &&
             <DropdownButtonList>
                 {React.Children.map(props.children, child => {

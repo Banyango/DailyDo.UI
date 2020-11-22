@@ -1,6 +1,8 @@
 import axios from "axios";
 import {Dispatch, MiddlewareAPI} from "redux";
 import {HttpAction} from "../utils/request-utils";
+import {push} from "connected-react-router";
+import {AppRoutes} from "../app/Routes";
 
 export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
     return (next: Dispatch) => async (action: HttpAction) => {
@@ -36,6 +38,15 @@ export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
 
                 if (action.meta.onFailure) {
                     await dispatch(action.meta?.onFailure(error.response));
+                }
+
+                if (error.status === 400){
+                    await dispatch({
+                        type: "APP_RESET",
+                        payload: {}
+                    });
+
+                    return dispatch(push(AppRoutes.Login))
                 }
             });
     };

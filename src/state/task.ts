@@ -12,7 +12,7 @@ export interface Task {
     /**
      * Order.
      */
-    order?:number;
+    order?: string;
 
     /**
      * True if completed; false otherwise.

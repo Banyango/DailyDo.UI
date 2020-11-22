@@ -8,7 +8,6 @@ import {TodoSelectors} from "./todo.selectors";
 const mapDispatchToProps = (
     dispatch, ownProps: ITodoOwnProps
 ): ITodoPageDispatchProps => {
-    console.log(ownProps);
     return {
         onInit: () => {},
         onEnterPressOnSubTask: (event) => {

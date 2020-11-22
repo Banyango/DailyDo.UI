@@ -6,8 +6,8 @@ export class TodoSelectors {
         return state.todos.task[parent].find(e => e.id === key);
     };
 
-    public static findParent = (state:IStore, parent:string): Task  => {
-        const ts1 = Object.values(state.todos.task).filter(e => e.find(c => c.id === parent));
-        return ts1[0][0];
+    public static findChildren = (state:IStore, parent:string): Task[]  => {
+        return state.todos.task[parent];
     };
+
 }

@@ -5,6 +5,7 @@ import {HttpAction} from "../../utils/request-utils";
 import {Task} from "../../state/task";
 import {ICollection} from "../../rest/collection";
 import {TasksByDay} from "../../rest/day/tasks-by-day";
+import {TodoSelectors} from "../../components/todo/todo.selectors";
 
 export class TodoActions {
 
@@ -37,7 +38,7 @@ export class TodoActions {
      * @param id    Id of the day.
      */
     public static getTasksForDay(id: string) {
-        return async (dispatch:Dispatch, getState: ()=> IStore) => {
+        return async (dispatch: Dispatch, getState: () => IStore) => {
             const action: HttpAction<TasksByDay> = {
                 type: "GET_TASKS_FOR_DAY",
                 meta: {
@@ -92,10 +93,10 @@ export class TodoActions {
                     href: link.href,
                     onSuccess: todoReducerActions.addTask,
                     payload: {
-                        parent:parent,
-                        text:"",
-                        completed:false,
-                        order:0,
+                        parent: parent,
+                        text: "",
+                        completed: false,
+                        order: parent,
                     }
                 },
             };
@@ -112,7 +113,7 @@ export class TodoActions {
                 return;
             }
 
-            const action: HttpAction<Task,Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
+            const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_SUBTASK",
                 meta: {
                     type: "http",
@@ -120,10 +121,10 @@ export class TodoActions {
                     href: `${link.href}/${id}/subtasks`,
                     onSuccess: todoReducerActions.addTask,
                     payload: {
-                        parent:id,
-                        text:"",
-                        completed:false,
-                        order:0,
+                        parent: id,
+                        text: "",
+                        completed: false,
+                        order: id,
                     }
                 },
             };
@@ -147,10 +148,10 @@ export class TodoActions {
                     href: `${link.href}/${id}/summaries`,
                     onSuccess: todoReducerActions.addTask,
                     payload: {
-                        parent:id,
-                        text:"",
-                        completed:false,
-                        order:0,
+                        parent: id,
+                        text: "",
+                        completed: false,
+                        order: id,
                     }
                 },
             };
@@ -216,8 +217,37 @@ export class TodoActions {
 
     static reorderTodo(parent: string, key: string, source: number, destination: number) {
         return async (dispatch: Dispatch, getState: () => IStore) => {
-            // todo change order on the BE
-            // dispatch(todoReducerActions.reorderTodos(parent, key, source, destination));
+            const link = getState().index.index._links.tasks;
+            if (!link) {
+                return;
+            }
+
+            const p = TodoSelectors.findChildren(getState(), parent);
+
+            const sourceTask = p[source];
+            const destTask = p[destination];
+
+            type ReorderTask = {
+                id: string,
+                newParent: string
+            }
+
+            const action: HttpAction<void, ReorderTask> = {
+                type: "REORDER_TASK",
+                meta: {
+                    type: "http",
+                    method: "post",
+                    href: `${link.href}/${key}/order`,
+                    onSuccess: () => todoReducerActions.reorderTasks(parent, key, source, destination),
+                    payload: {
+                        id: key,
+                        newParent: destTask.id
+                    }
+                },
+            };
+
+            return dispatch(action);
         }
     }
 }
+       

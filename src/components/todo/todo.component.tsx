@@ -115,6 +115,7 @@ export const TodoComponent: React.FC<ITodoProps> = (props) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
+
                     <div className="todo_container">
                         <Form<ITodoForm> className={classNames({todo: true, todo_contains: props.todos?.length > 0})}
                                          onSubmit={props.onSubmit}

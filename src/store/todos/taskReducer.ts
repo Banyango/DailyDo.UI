@@ -67,6 +67,10 @@ export class TaskReducer extends ImmerReducer<ITaskStore> {
         }
     }
 
+    reorderTasks(parent: string, key: string, source: number, destination: number) {
+        this.draftState.task[parent] = ArrayUtils.move(this.draftState.task[parent], source, destination);
+    }
+
     disposeTask(id: string) {
         delete this.draftState.task[id];
     }

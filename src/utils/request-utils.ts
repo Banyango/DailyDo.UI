@@ -1,6 +1,6 @@
 import { Action, AnyAction } from "redux";
 
-export type HttpAction<T = void, P = void> = Action & {
+export type HttpAction<Type = void, Payload = void> = Action & {
   /**
    *  meta options
    */
@@ -33,7 +33,7 @@ export type HttpAction<T = void, P = void> = Action & {
     /**
      * Optional payload body.
      */
-    payload?: P;
+    payload?: Payload;
 
     /**
      * Validate the status.
@@ -51,7 +51,7 @@ export type HttpAction<T = void, P = void> = Action & {
      * Callback on success.
      * @param resources
      */
-    onSuccess?: (resources: T) => AnyAction;
+    onSuccess?: (resources: Type) => AnyAction;
 
     /**
      * Callback on error.

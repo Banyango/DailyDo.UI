@@ -12,8 +12,8 @@ const mapDispatchToProps = (
 ): ITodoListDispatchProps => {
     return {
         onInit: () => {},
-        onReorderTodo: (key, result) => dispatch(TodoActions.reorderTodo(ownProps.parent, key, result.source.index, result.destination.index)),
-        onReorderSubTask: (parent, key, result) => dispatch(TodoActions.reorderTodo(parent, key, result.source.index, result.destination.index)),
+        onReorderTodo: (key, result) => dispatch(TodoActions.reorderTodo(key, result.source.index, result.destination.index)),
+        onReorderSubTask: (parent, key, result) => dispatch(TodoActions.reorderTodo(key, result.source.index, result.destination.index)),
         onAddTodo: () => dispatch(TodoActions.addTodo(ownProps.parent)),
         onDispose: () => dispatch(TodoActions.disposeTask(ownProps.parent))
     };
