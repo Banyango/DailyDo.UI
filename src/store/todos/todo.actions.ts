@@ -85,6 +85,9 @@ export class TodoActions {
                 return;
             }
 
+            const children = TodoSelectors.findChildren(getState(), parent);
+            const lastTask = children && children[children.length-1].id;
+
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_TASK",
                 meta: {
@@ -96,7 +99,7 @@ export class TodoActions {
                         parent: parent,
                         text: "",
                         completed: false,
-                        order: parent,
+                        order: lastTask || parent,
                     }
                 },
             };
@@ -113,6 +116,9 @@ export class TodoActions {
                 return;
             }
 
+            const children = TodoSelectors.findChildren(getState(), id);
+            const lastTask = children && children[children.length-1].id;
+
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_SUBTASK",
                 meta: {
@@ -124,7 +130,7 @@ export class TodoActions {
                         parent: id,
                         text: "",
                         completed: false,
-                        order: id,
+                        order: lastTask || id,
                     }
                 },
             };
@@ -140,6 +146,9 @@ export class TodoActions {
                 return;
             }
 
+            const children = TodoSelectors.findChildren(getState(), id);
+            const lastTask = children && children[children.length-1].id;
+
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_SUMMARY",
                 meta: {
@@ -151,7 +160,7 @@ export class TodoActions {
                         parent: id,
                         text: "",
                         completed: false,
-                        order: id,
+                        order: lastTask || id,
                     }
                 },
             };
@@ -250,4 +259,3 @@ export class TodoActions {
         }
     }
 }
-       
