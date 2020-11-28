@@ -33,7 +33,7 @@ export const Navbar: React.FC<INavBarProps> = props => {
   return (
     <nav className="navbar">
       <ul className="menu">
-        <li style={{marginTop:"15px"}} className={style}>
+        <li className={style}>
           <a href="/">Home</a>
         </li>
         {props.isLoggedIn ? (<li className={style}><a href="/logout">Logout</a></li>) : <></>}
