@@ -32,21 +32,22 @@ export const httpMiddleware = ({dispatch}: MiddlewareAPI) => {
                 await dispatch(action.meta?.onSuccess(response.data));
             })
             .catch(async (error) => {
-                if (action.meta.onPending) {
-                    await dispatch(action.meta.onPending(false, action.meta?.id));
-                }
-
-                if (action.meta.onFailure) {
-                    await dispatch(action.meta?.onFailure(error.response));
-                }
-
-                if (error.status === 400){
+                if (error.response?.status === 401) {
                     await dispatch({
                         type: "APP_RESET",
                         payload: {}
                     });
 
                     return dispatch(push(AppRoutes.Login))
+                }
+
+                if (action.meta.onPending) {
+                    await dispatch(action.meta.onPending(false, action.meta?.id));
+                }
+
+                if (action.meta.onFailure) {
+
+                    await dispatch(action.meta?.onFailure(error.response));
                 }
             });
     };

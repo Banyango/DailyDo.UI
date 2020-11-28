@@ -85,9 +85,6 @@ export class TodoActions {
                 return;
             }
 
-            const children = TodoSelectors.findChildren(getState(), parent);
-            const lastTask = children && children[children.length-1].id;
-
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_TASK",
                 meta: {
@@ -99,7 +96,6 @@ export class TodoActions {
                         parent: parent,
                         text: "",
                         completed: false,
-                        order: lastTask || parent,
                     }
                 },
             };
@@ -116,9 +112,6 @@ export class TodoActions {
                 return;
             }
 
-            const children = TodoSelectors.findChildren(getState(), id);
-            const lastTask = children && children[children.length-1].id;
-
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_SUBTASK",
                 meta: {
@@ -130,7 +123,6 @@ export class TodoActions {
                         parent: id,
                         text: "",
                         completed: false,
-                        order: lastTask || id,
                     }
                 },
             };
@@ -146,9 +138,6 @@ export class TodoActions {
                 return;
             }
 
-            const children = TodoSelectors.findChildren(getState(), id);
-            const lastTask = children && children[children.length-1].id;
-
             const action: HttpAction<Task, Pick<Task, 'parent' | 'text' | 'completed' | 'order'>> = {
                 type: "POST_SUMMARY",
                 meta: {
@@ -160,7 +149,6 @@ export class TodoActions {
                         parent: id,
                         text: "",
                         completed: false,
-                        order: lastTask || id,
                     }
                 },
             };
@@ -233,26 +221,27 @@ export class TodoActions {
 
             const p = TodoSelectors.findChildren(getState(), parent);
 
-            const sourceTask = p[source];
-            const destTask = p[destination];
+            const destTask = p[destination].id;
 
             type ReorderTask = {
                 id: string,
                 newParent: string
             }
 
-            const action: HttpAction<void, ReorderTask> = {
+            const action: HttpAction<Task, ReorderTask> = {
                 type: "REORDER_TASK",
                 meta: {
                     type: "http",
-                    method: "post",
+                    method: "put",
                     href: `${link.href}/${key}/order`,
                     onSuccess: () => todoReducerActions.reorderTasks(parent, key, source, destination),
+
                     payload: {
                         id: key,
-                        newParent: destTask.id
+                        newParent: destTask,
                     }
                 },
+
             };
 
             return dispatch(action);
