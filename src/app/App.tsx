@@ -61,7 +61,8 @@ class App extends Component<IAppProps> {
                             <NavBarContainer/>
                         </div>
                         <div className="app__sidenav">
-                            <MenuButton className="app__addday_button" name="Add Day" icon="calendar-plus" onClick={this.props.onAddDay}/>
+                            <MenuButton className="app__add_day_button" name="Add Day" icon="calendar-plus" onClick={this.props.onAddDay}/>
+                            <MenuButton className="app__duplicate_day_button" name="Duplicate Day" icon="copy" onClick={this.props.onDuplicateDay}/>
                             <DayListContainer />
                         </div>
                         <div className="app__main">

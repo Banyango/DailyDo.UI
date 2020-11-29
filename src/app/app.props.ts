@@ -46,6 +46,11 @@ export interface IAppDispatchProps {
   onAddDay: () => void;
 
   /**
+   * Emitted when you duplicate a day.
+   */
+  onDuplicateDay: () => void;
+
+  /**
    * Emitted on export.
    */
   onExport: () => void;

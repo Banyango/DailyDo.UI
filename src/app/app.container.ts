@@ -13,6 +13,7 @@ const mapDispatchToProps = (
   return {
     onInit: () => dispatch(AppActions.initApplication()),
     onAddDay: () => dispatch(DayActions.AddDay()),
+    onDuplicateDay: () => dispatch(DayActions.DuplicateDay()),
     onExport: () => dispatch(ExportUtils.export()),
     onSelectDay: (dayId:string) => dispatch(DayActions.SelectDay(dayId))
   };

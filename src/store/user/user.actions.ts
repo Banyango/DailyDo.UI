@@ -8,6 +8,7 @@ import { push } from "connected-react-router";
 import { AppRoutes } from "../../app/Routes";
 import {DayActions} from "../day/day.actions";
 import {ThunkDispatch} from "redux-thunk";
+import {UserSelectors} from "./user.selectors";
 
 type UserLoginParam = {
   email: string;
@@ -51,6 +52,7 @@ export class UserActions {
           onPending: userReducerActions.setLoginPending,
           onSuccess: userReducerActions.setUser,
           onFailure: userReducerActions.setLoginError,
+          ignoreAuthenticationRedirectOnError: true,
           payload: {
             email,
             password,
@@ -59,6 +61,12 @@ export class UserActions {
       };
 
       await dispatch(action);
+
+      const user = UserSelectors.getLoggedInUser(getState());
+
+      if (!user) {
+        return;
+      }
 
       await dispatch(DayActions.getDays());
 

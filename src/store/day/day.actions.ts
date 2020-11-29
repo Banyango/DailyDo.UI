@@ -41,6 +41,28 @@ export class DayActions {
         }
     }
 
+    static DuplicateDay() {
+        return async (dispatch:Dispatch, getState: ()=> IStore) => {
+            const id = getState().days.selectedDay;
+
+            if (!id) {
+                return
+            }
+
+            const action: HttpAction<Day> = {
+                type: "POST_DAY",
+                meta: {
+                    type: "http",
+                    method: "post",
+                    href: `/api/v1/auth/days/${id}/duplicate`,
+                    onSuccess: dayReducerActions.addDay
+                },
+            };
+
+            return dispatch(action);
+        }
+    }
+
     public static UpdateDay(day: Pick<Day, 'id' | 'summary'>) {
         return async (dispatch:Dispatch, getState: ()=> IStore) => {
             const action: HttpAction<Day, Pick<Day, 'id' | 'summary'>> = {
@@ -84,4 +106,5 @@ export class DayActions {
     public static getSelectedDay(state: IStore) {
         return state.days.days[state.days.selectedDay];
     }
+
 }

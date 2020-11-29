@@ -58,6 +58,11 @@ export type HttpAction<Type = void, Payload = void> = Action & {
      * @param error
      */
     onFailure?: (error: Error) => AnyAction;
+
+    /**
+     * True if we should ignore the authentication redirect when we get a 401 response.
+     */
+    ignoreAuthenticationRedirectOnError?:boolean;
   };
 };
 

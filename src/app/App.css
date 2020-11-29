@@ -99,7 +99,7 @@ html, body {
     overflow-y: scroll;
 }
 
-.app__addday_button {
+.app__add_day_button {
     border: none;
     border-radius: 0px;
     padding: 12px;
@@ -107,11 +107,28 @@ html, body {
     color: white;
 }
 
-.app__addday_button:hover {
+.app__duplicate_day_button {
+    border: none;
+    border-radius: 0px;
+    padding: 12px;
+    background-color: #2a9fff;
+    color: white;
+}
+
+.app__add_day_button:hover {
     border: none;
     border-radius: 0px;
     padding: 12px;
     background-color: #ff870a;
+    color: black;
+    cursor: pointer;
+}
+
+.app__duplicate_day_button:hover {
+    border: none;
+    border-radius: 0px;
+    padding: 12px;
+    background-color: #2ff7ff;
     color: black;
     cursor: pointer;
 }

@@ -6,7 +6,8 @@ import {
     faFileExport,
     faHeading,
     faListOl, faListUl,
-    faPlusCircle
+    faPlusCircle,
+    faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faPlusCircle, faCalendarPlus, faFileExport, faEdit, faBold, faHeading, faListUl, faListOl, faCheckSquare);
+library.add(faPlusCircle, faCalendarPlus, faFileExport, faEdit, faBold, faHeading, faListUl, faListOl, faCheckSquare, faCopy);
