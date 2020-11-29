@@ -1,8 +1,9 @@
-import React, {ReactElement, useState} from 'react';
+import React, {ReactElement, useRef, useState} from 'react';
 
 import {DropdownButtonList} from "./dropdown-button-list/dropdown-button-list.component";
 
 import './dropdown-button.css';
+import {useClickAway} from "react-use";
 
 interface IDropdownProps {
     /**
@@ -13,10 +14,14 @@ interface IDropdownProps {
 
 export const DropdownButton: React.FC<IDropdownProps> = (props) => {
     const [expanded, setExpanded] = useState(false);
+    const ref = useRef(null);
+    useClickAway(ref, () => {
+        setExpanded(false);
+    });
     const onClick = () => setExpanded(false);
     return (
-        <div className="dropdown-button-group">
-            {!expanded && <button className="dropdown__button" onClick={(e) => {
+        <div className="dropdown-button-group" ref={ref}>
+            {<button className="dropdown__button" onClick={(e) => {
                 e.preventDefault();
                 setExpanded(!expanded);
             }} onBlur={() => setExpanded(false)}>{props.innerText}

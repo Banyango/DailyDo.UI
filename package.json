@@ -40,6 +40,7 @@
     "react-scripts": "4.0.0",
     "react-spring": "9.0.0-rc.3",
     "react-swipe": "6.0.4",
+    "react-use": "^15.3.4",
     "react-use-gesture": "7.0.15",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
