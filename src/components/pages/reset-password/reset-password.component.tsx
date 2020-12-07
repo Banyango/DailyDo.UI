@@ -6,6 +6,25 @@ import { AppRoutes } from "../../../app/Routes";
 import { Link } from "react-router-dom";
 
 import './reset-password.css';
+import {Navbar} from "../../navbar/Navbar";
+
+// export class ResetPasswordComponent extends Component<IResetPasswordPageProps> {
+//   render() {
+//     const { token } = this.props;
+//
+//     return (
+//       <div className="reset_container">
+//         <h3 className="reset_header">Reset Password</h3>
+//         {token ? (
+//           <ResetPasswordNewPasswordContainer token={token} />
+//         ) : (
+//           <ResetPasswordEmailContainer />
+//         )}
+//         <Link to={AppRoutes.Login}>Login</Link>
+//       </div>
+//     );
+//   }
+// }
 
 export class ResetPasswordComponent extends Component<IResetPasswordPageProps> {
   render() {
@@ -13,13 +32,8 @@ export class ResetPasswordComponent extends Component<IResetPasswordPageProps> {
 
     return (
       <div className="reset_container">
-        <h3 className="reset_header">Reset Password</h3>
-        {token ? (
-          <ResetPasswordNewPasswordContainer token={token} />
-        ) : (
-          <ResetPasswordEmailContainer />
-        )}
-        <Link to={AppRoutes.Login}>Login</Link>
+          At this time you can't reset your password. Contact an admin!
+          <Navbar isLoggedIn={false}/>
       </div>
     );
   }

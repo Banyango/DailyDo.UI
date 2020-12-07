@@ -1,0 +1,30 @@
+.mininavbar {
+    display: flex;
+}
+
+.mininavbar__toggle {
+    padding: 5px;
+    align-self: center;
+}
+
+.mininavbar__toggle:hover {
+    color: #ff4343;
+}
+
+.light {
+    background-color: transparent;
+}
+
+.light > div > span {
+    color: #2f2f2f;
+}
+
+.mininavbar__logo {
+    flex: 1 1 auto;
+}
+
+@media all and (min-width: 768px) {
+    .mininavbar__hidden-md{
+        display: none;
+    }
+}

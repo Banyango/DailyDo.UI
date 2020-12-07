@@ -1,6 +1,7 @@
 .menu_button {
     display: flex;
     padding: 4px 9px;
+    width: 100%;
     margin: 5px;
     color: #313131;
     background-color: white;

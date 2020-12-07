@@ -25,39 +25,30 @@ export interface INavBarStateProps {
 }
 
 export const Navbar: React.FC<INavBarProps> = props => {
-  const [active, setActive] = useState(false);
-  const sendRequest = useCallback(() => {
-    setActive(!active);
-  }, [active]);
-  const style = classNames("item", { active });
-  return (
-    <nav className="navbar">
-      <ul className="menu">
-        <li className={style}>
-          <a href="/">Home</a>
-        </li>
-        {props.isLoggedIn ? (<li className={style}><a href="/logout">Logout</a></li>) : <></>}
-        {!props.isLoggedIn ? <NavBarLogin active={active}/> : <></>}
-        <li className="toggle" onClick={sendRequest}>
-          <FontAwesomeIcon icon={!active ? "bars" : "times"} />
-        </li>
-      </ul>
-    </nav>
-  );
+    return (
+        <nav className="navbar">
+            <ul className="menu">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                {props.isLoggedIn ? (<li ><a href="/logout">Logout</a></li>) : <></>}
+                {!props.isLoggedIn ? <NavBarLogin /> : <></>}
+            </ul>
+        </nav>
+    );
 };
 
 interface INavBarLoginProps {
-  active:boolean;
+
 }
 
 const NavBarLogin: React.FC<INavBarLoginProps> = props => {
-  const active = props.active;
   return (
       <>
-        <li className={classNames("item", "button", { active })}>
+        <li className={classNames("item", "button")}>
           <a href="/login">Log In</a>
         </li>
-        <li className={classNames("item", "button", "secondary", { active })}>
+        <li className={classNames("item", "button", "secondary")}>
           <a href="/register">Sign Up</a>
         </li>
       </>

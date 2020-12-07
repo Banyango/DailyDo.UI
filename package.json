@@ -34,6 +34,7 @@
     "react-hook-form": "6.1.2",
     "react-infinite-scroll-component": "5.0.4",
     "react-on-screen": "2.1.1",
+    "react-pro-sidebar": "^0.4.4",
     "react-redux": "7.2.0",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",

@@ -33,7 +33,7 @@ a:hover {
     padding-inline-start: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -59,101 +59,8 @@ a:hover {
     background: white;
 }
 
-
 .item.active {
     display: block;
     z-index: 1;
 }
 
-/** Tablet **/
-@media all and (min-width: 600px) {
-    .menu {
-        justify-content: center;
-    }
-
-    .logo {
-        flex: 1;
-        margin-left: 0;
-    }
-
-    .toggle {
-        flex: 1;
-        text-align: right;
-    }
-
-    .item.button {
-        width: auto;
-        order: 1;
-        display: block;
-    }
-
-    .toggle {
-        order: 2;
-    }
-
-    .button.secondary {
-        border: 0;
-    }
-
-    .button a {
-        padding: 7.5px 15px;
-        background: rgb(201, 201, 201);
-        border: 1px #b3b3b3 solid;
-        border-radius: 0.25em;
-    }
-
-    .button.secondary a {
-        background: transparent;
-    }
-
-    .button a:hover {
-        text-decoration: none;
-    }
-
-    .button:not(.secondary) a:hover {
-        background: #3d3d3d;
-        color: blanchedalmond;
-        border-color: #e7e7e7;
-    }
-
-    .button.secondary a:hover {
-        color: #ddd;
-    }
-}
-
-@media all and (min-width: 900px) {
-    .item {
-        display: block;
-        width: auto;
-    }
-
-    .toggle {
-        display: none;
-    }
-
-    .logo {
-        order: 0;
-    }
-
-    .item {
-        order: 1;
-    }
-
-    .button {
-        order: 2;
-    }
-
-    .menu li {
-
-    }
-
-    .menu li.button {
-        padding-right: 0;
-    }
-
-    .navbar {
-        display: flex;
-        justify-content: end;
-        margin-right: 20px;
-    }
-}

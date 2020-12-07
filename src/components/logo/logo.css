@@ -3,31 +3,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     list-style: none;
     color: white;
+    margin-bottom: 15px;
+    background-color: #0b022d;
 }
 
-.logo a:hover {
+.logo div:hover {
     columns: #bfd1f1;
     text-decoration: none;
 }
 
-.logo > a > svg {
+.logo > div > svg {
     color: #ff4343;
 }
 
-.logo > a > span {
+.logo > div > span {
     color: white;
     margin-left: 3px;
 }
 
-.logo a,
-.toggle a {
+.logo div,
+.toggle div {
     font-size: 19px;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 768px) {
     .logo {
         flex: 1;
         margin-left: 0;
